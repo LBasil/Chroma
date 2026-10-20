@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chroma — Convertisseur de couleurs</title>
+  <meta name="description" content="Toutes les conversions de couleurs : HEX, RGB, HSL, HSV, HWB, CMJN, CIE XYZ, Lab, Luv, Oklch, Display P3, Rec. 2020, YCbCr…">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="logo" aria-hidden="true"></span>Chroma</div>
+    <span class="tagline">Une couleur, tous les formats</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="card preview">
+        <div class="swatch-wrap checker">
+          <div id="swatch" class="swatch">
+            <button id="bigHex" class="big-hex" type="button" title="Copier">#FF4554</button>
+            <div id="bigName" class="big-name"></div>
+          </div>
+        </div>
+        <div id="gamutBadges" class="badges"></div>
+      </div>
+
+      <div class="card controls">
+        <label class="label" for="text">Colle une couleur dans n’importe quel format</label>
+        <div class="input-row">
+          <label class="picker" title="Ouvrir le sélecteur de couleur">
+            <input type="color" id="picker" aria-label="Sélecteur de couleur">
+          </label>
+          <input id="text" class="text" spellcheck="false" autocomplete="off" placeholder="#ff4554, rgb(…), oklch(…), tomato…">
+        </div>
+        <div class="examples">
+          <span>Essaie :</span>
+          <button type="button" data-example="rgb(56 189 248 / 0.8)">rgb()</button>
+          <button type="button" data-example="hsl(280 70% 55%)">hsl()</button>
+          <button type="button" data-example="oklch(70% 0.32 145)">oklch()</button>
+          <button type="button" data-example="lab(55% 70 -40)">lab()</button>
+          <button type="button" data-example="cmyk(0%, 80%, 95%, 0%)">cmyk()</button>
+          <button type="button" data-example="hsv(45, 90%, 100%)">hsv()</button>
+          <button type="button" data-example="color(display-p3 0 1 0.3)">P3</button>
+          <button type="button" data-example="rebeccapurple">nom</button>
+        </div>
+
+        <div class="sliders">
+          <div class="slider"><span>R</span><input type="range" id="sR" min="0" max="255" aria-label="Rouge"><output id="oR"></output></div>
+          <div class="slider"><span>G</span><input type="range" id="sG" min="0" max="255" aria-label="Vert"><output id="oG"></output></div>
+          <div class="slider"><span>B</span><input type="range" id="sB" min="0" max="255" aria-label="Bleu"><output id="oB"></output></div>
+          <div class="slider alpha"><span>A</span><input type="range" id="sA" min="0" max="100" aria-label="Opacité"><output id="oA"></output></div>
+        </div>
+
+        <div class="actions">
+          <button id="eyedrop" type="button" class="btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 22 1-1h3l9-9"/><path d="M3 21v-3l9-9"/><path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l.4.4a2.1 2.1 0 1 1-3 3l-3.8-3.8a2.1 2.1 0 1 1 3-3l.4.4Z"/></svg>
+            Pipette écran
+          </button>
+          <button id="random" type="button" class="btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.7-1.1 2-1.7 3.3-1.7H22"/><path d="m18 2 4 4-4 4"/><path d="M2 6h1.9c1.5 0 2.9.9 3.6 2.2"/><path d="M22 18h-5.9c-1.3 0-2.6-.7-3.3-1.8l-.5-.8"/><path d="m18 14 4 4-4 4"/></svg>
+            Aléatoire
+          </button>
+          <button id="share" type="button" class="btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>
+            Copier le lien
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card palette">
+      <div class="palette-head">
+        <h2>Nuances</h2>
+        <p>Échelle de clarté générée en Oklch, de 50 à 1000. Clique sur une nuance pour la sélectionner.</p>
+      </div>
+      <div id="shades" class="shades"></div>
+      <div id="harmonies" class="harmonies"></div>
+    </section>
+
+    <div class="toolbar">
+      <div class="search">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search" type="search" placeholder="Filtrer les formats (ex : swift, ycbcr, p3…)" autocomplete="off">
+      </div>
+      <nav id="nav" class="nav">
+        <a href="#g-web">Web</a><a href="#g-models">TSV/TSL</a><a href="#g-cie">CIE</a><a href="#g-gamut">Gamuts</a>
+        <a href="#g-video">Vidéo</a><a href="#g-print">Impression</a><a href="#g-bits">Bits</a><a href="#g-code">Code</a>
+        <a href="#g-a11y">Accessibilité</a><a href="#notes">Nuanciers</a>
+      </nav>
+    </div>
+
+    <div id="groups"></div>
+
+    <section id="notes" class="card notes">
+      <h2>Ce qui ne se convertit pas</h2>
+      <p class="lead">Certains termes ne décrivent pas une couleur calculable. Le site ne leur invente donc pas de valeur.</p>
+      <div class="notes-grid">
+        <div>
+          <h3>Nuanciers propriétaires</h3>
+          <p><strong>Pantone (PMS), RAL, NCS, Munsell, DIC, TOYO</strong> sont des catalogues d’échantillons physiques (encres, peintures). Il n’existe aucune formule pour passer d’un HEX à une référence de ces catalogues : il faut leurs tables officielles, souvent sous licence. Les « convertisseurs » en ligne donnent la correspondance la plus proche, avec une marge d’erreur notable.</p>
+        </div>
+        <div>
+          <h3>Profils ICC</h3>
+          <p>Un profil ICC (Coated FOGRA39, Euroscale…) décrit le comportement d’une imprimante ou d’un écran précis. Le CMJN affiché plus haut est une conversion mathématique sans profil. Pour un rendu d’impression fidèle, fais la conversion dans Photoshop, Illustrator ou InDesign avec le profil de ton imprimeur.</p>
+        </div>
+        <div>
+          <h3>Matrice de Bayer</h3>
+          <p>C’est un filtre physique posé sur le capteur des appareils photo. Il capte du rouge, du vert ou du bleu selon le photosite, puis l’image est reconstruite par dématriçage. C’est un procédé d’acquisition, pas un format de couleur.</p>
+        </div>
+        <div>
+          <h3>Sous-échantillonnage (4:4:4, 4:2:2, 4:2:0)</h3>
+          <p>Cette technique stocke la chrominance (Cb/Cr) à une résolution plus faible que la luminance. Elle porte sur un groupe de pixels, pas sur une couleur isolée. Les valeurs YCbCr d’un pixel sont données dans la section Vidéo.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">Calculs en local selon CSS Color Module 4 (D65, adaptation de Bradford pour D50). Aucune donnée envoyée.</footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/names.js"></script>
+  <script src="js/convert.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
