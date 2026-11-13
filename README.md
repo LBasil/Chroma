@@ -44,16 +44,16 @@ from everyday web formats to video, print and wide-gamut color spaces.
 
 |  |  |
 |---|---|
-| 🎯 **Paste anything** | HEX, `rgb()`, `hsl()`, `hwb()`, `lab()`, `oklch()`, `color(display-p3 …)`, CMYK, HSV, CSS names, decimal integers, `vec4(…)`… The format is detected automatically. |
-| 🖌️ **Three ways to pick** | Native color picker, RGB + alpha sliders, and a screen eyedropper. |
-| 📋 **One click to copy** | Every one of the 100+ values is a button. |
-| 🌈 **Wide-gamut aware** | Colors outside sRGB stay exact internally, are previewed in Display P3 when your screen supports it, and are flagged with gamut badges. |
-| 🎨 **Palette tools** | An 11-step shade scale (50 → 1000) and five color harmonies, all generated in Oklch. |
-| ♿ **Accessibility** | WCAG 2.x contrast ratios against white and black, graded AA / AAA. |
-| 🔗 **Shareable** | The current color is stored in the URL. Send the link and the color comes with it. |
-| 🔍 **Searchable** | Filter every format instantly: `swift`, `ycbcr`, `p3`… |
-| 🌓 **Light & dark** | Follows your system theme. |
-| 🔒 **100% local** | No build step, no tracking, no network requests. |
+| **Paste anything** | HEX, `rgb()`, `hsl()`, `hwb()`, `lab()`, `oklch()`, `color(display-p3 …)`, CMYK, HSV, CSS names, decimal integers, `vec4(…)`… The format is detected automatically. |
+| **Three ways to pick** | Native color picker, RGB + alpha sliders, and a screen eyedropper. |
+| **One click to copy** | Every one of the 100+ values is a button. |
+| **Wide-gamut aware** | Colors outside sRGB stay exact internally, are previewed in Display P3 when your screen supports it, and are flagged with gamut badges. |
+| **Palette tools** | An 11-step shade scale (50 → 1000) and five color harmonies, all generated in Oklch. |
+| **Accessibility** | WCAG 2.x contrast ratios against white and black, graded AA / AAA. |
+| **Shareable** | The current color is stored in the URL. Send the link and the color comes with it. |
+| **Searchable** | Filter every format instantly: `swift`, `ycbcr`, `p3`… |
+| **Light & dark** | Follows your system theme. |
+| **100% local** | No build step, no tracking, no network requests. |
 
 ## Getting started
 
