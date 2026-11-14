@@ -201,6 +201,16 @@ Some color terms do not describe a computable color, so Chroma does not invent v
 | **Bayer filter** | A camera sensor's capture process, not a color format. |
 | **Chroma subsampling** (4:4:4, 4:2:2, 4:2:0) | Applies to groups of pixels, not to a single color. |
 
+## Tests
+
+The conversion engine is covered by dependency-free tests (Node's built-in runner). They load `js/convert.js` and `js/names.js` exactly as the browser does.
+
+```bash
+node --test
+```
+
+They run on every push through GitHub Actions.
+
 ## Project structure
 
 ```
